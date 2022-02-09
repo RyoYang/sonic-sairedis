@@ -591,9 +591,13 @@ namespace saivs
                     _In_ sai_object_id_t macsec_sa_id,
                     _Out_ sai_attribute_t &attr);
 
+            void retryCreateIngressMaCsecSAs();
+
             MACsecManager m_macsecManager;
 
             std::unordered_map<sai_object_id_t, sai_object_id_t> m_macsecFlowPortMap;
+
+            std::unordered_set<MACsecAttr, MACsecAttr::Hash> m_uncreatedIngressMACsecSAs;
 
         protected:
 
@@ -649,6 +653,11 @@ namespace saivs
 
             virtual sai_status_t queryVlanfloodTypeCapability(
                                       _Inout_ sai_s32_list_t *enum_values_capability);
+
+            virtual sai_status_t queryNextHopGroupTypeCapability(
+                                      _Inout_ sai_s32_list_t *enum_values_capability);
+
+
 
         public: // TODO private
 
